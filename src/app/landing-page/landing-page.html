@@ -1,0 +1,84 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+  <!-- Hero Section -->
+  <section class="pt-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold text-indigo-700 dark:text-indigo-400 mb-6">
+        Welcome to My Portfolio
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
+        Discover my latest projects and creative work
+      </p>
+    </div>
+  </section>
+  <app-about-me />
+
+  <!-- Projects Section -->
+  <section class="py-16 px-4 bg-white dark:bg-gray-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Featured Projects
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Here are some of my recent projects showcasing my skills in web development and design.
+        </p>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <app-project
+          projectName="RoomyLedger"
+          projectDescription="A Ledger application for managing your rental properties. Features secure authentication, real-time updates, and a user-friendly interface."
+          githubLink="https://github.com/jonathan-lee-devel/roomyledger"
+          websiteLink="https://www.roomyledger.com"
+        />
+
+        <!-- Project 2 -->
+        <app-project
+          projectName="Task Management Dashboard"
+          projectDescription="A modern task management application with drag-and-drop functionality, real-time updates, and team collaboration features. Built using Angular and Firebase."
+          githubLink="https://github.com/yourusername/task-dashboard"
+          websiteLink="https://task-manager-demo.example.com"
+        />
+
+        <!-- Project 3 -->
+        <app-project
+          projectName="Weather Analytics App"
+          projectDescription="A responsive weather application that provides detailed forecasts, historical data, and interactive charts. Integrates with multiple weather APIs for accurate predictions."
+          githubLink="https://github.com/yourusername/weather-app"
+          websiteLink="https://weather-analytics.example.com"
+        />
+
+        <!-- Project 4 -->
+        <app-project
+          projectName="Portfolio Website"
+          projectDescription="A modern, responsive portfolio website built with Angular and styled with Tailwind CSS. Features smooth animations, dark mode support, and optimized performance."
+          githubLink="https://github.com/yourusername/portfolio-v2"
+        />
+
+        <!-- Project 5 -->
+        <app-project
+          projectName="Recipe Sharing Platform"
+          projectDescription="A social platform for food enthusiasts to share and discover recipes. Includes user profiles, recipe ratings, advanced search, and meal planning features."
+          githubLink="https://github.com/yourusername/recipe-platform"
+          websiteLink="https://recipes-share.example.com"
+        />
+
+        <!-- Project 6 -->
+        <app-project
+          projectName="Fitness Tracker API"
+          projectDescription="A RESTful API for fitness tracking applications. Provides endpoints for workout logging, progress tracking, and social features. Built with Node.js and MongoDB."
+          githubLink="https://github.com/yourusername/fitness-api"
+        />
+      </div>
+
+      <!-- View More Button -->
+      <div class="text-center mt-12">
+        <button class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          View All Projects
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
