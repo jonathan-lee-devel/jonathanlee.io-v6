@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {afterRenderEffect, Component, OnInit, signal, Inject, PLATFORM_ID} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -8,33 +9,49 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.css'
 })
 export class Navbar implements OnInit {
-  isDarkMode = false;
-  isMobileMenuOpen = false;
+  isDarkMode = signal<boolean>(false);
+  isMobileMenuOpen = signal<boolean>(false);
+
+  constructor(@Inject(PLATFORM_ID) private readonly platformId: Object) {
+    afterRenderEffect(() => {
+      this.updateTheme();
+    });
+  }
 
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeTheme();
+    }
+  }
+
+  private initializeTheme() {
     // Check for saved theme preference or default to light mode
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    this.isDarkMode = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    this.isDarkMode.set(savedTheme === 'dark' || (!savedTheme && prefersDark));
     this.updateTheme();
   }
 
   toggleDarkMode() {
-    this.isDarkMode = !this.isDarkMode;
+    this.isDarkMode.set(!this.isDarkMode());
     this.updateTheme();
-    localStorage.setItem('theme', this.isDarkMode ? 'dark' : 'light');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('theme', this.isDarkMode() ? 'dark' : 'light');
+    }
   }
 
   toggleMobileMenu() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    this.isMobileMenuOpen.set(!this.isMobileMenuOpen());
   }
 
   private updateTheme() {
-    if (this.isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.isDarkMode()) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     }
   }
 }
